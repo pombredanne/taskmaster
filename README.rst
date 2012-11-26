@@ -28,6 +28,15 @@ Requirements **should** be handled by setuptools, but if they are not, you will 
 * gevent
 * gevent_zeromq
 
+
+A note on Gevent
+----------------
+
+Being that Taskmaster uses gevent for both its iterator task (master) and its consumers, your application will need
+to correctly implement non-blocking gevent compatible callers. In most cases this won't be a problem, but if you're
+using the network you'll need to look for a compatible library for your adapter. For example, there is an alternative
+version of ``psycopg2`` designed for gevent called ``gevent-psycopg2``.
+
 Usage
 -----
 
@@ -64,4 +73,10 @@ Dont like the magical function discover for master/slave? Specify your own targe
     $ tm-master taskmaster.example:get_jobs
     $ tm-slave taskmaster.example:handle_job
 
-.. note:: All arguments are optional, and the address will default to ``tcp://*:3050``.
+Maybe you simply need to run things on the same server?
+
+::
+
+    $ tm-run taskmaster/example.py 8
+
+.. note:: All arguments are optional, and the address will default to ``tcp://0.0.0.0:3050``.

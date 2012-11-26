@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     name="taskmaster",
     license='Apache License 2.0',
-    version="0.5.2",
+    version="0.7.1",
     description="",
     author="David Cramer",
     author_email="dcramer@gmail.com",
@@ -17,6 +17,7 @@ setup(
             'tm-master = taskmaster.cli.master:main',
             'tm-slave = taskmaster.cli.slave:main',
             'tm-spawn = taskmaster.cli.spawn:main',
+            'tm-run = taskmaster.cli.run:main',
         ],
     },
     install_requires=[
